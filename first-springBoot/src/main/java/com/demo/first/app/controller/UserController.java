@@ -1,5 +1,7 @@
-package com.demo.first.app;
+package com.demo.first.app.controller;
 
+import com.demo.first.app.model.User;
+import com.demo.first.app.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +12,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    private UserService userService = new UserService();
+    private UserService userService ;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -81,7 +83,7 @@ public class UserController {
         return ResponseEntity.ok(userService.searchUsers(name, email));
     }
 
-    @GetMapping("/info")
+    @GetMapping("/info/{id}")
     public String getInfo(
             @PathVariable int id,
             @RequestParam String name,
@@ -91,4 +93,14 @@ public class UserController {
     ) {
         return "User Agent: "+ userAgent + " : " + id+ " : "+name;
     }
+
 }
+
+
+//
+//{
+//        "timestamp": "2026-02-10T16:13:05.116Z",
+//        "status": 500,
+//        "error": "Internal Server Error",
+//        "path": "/user"
+//        }
